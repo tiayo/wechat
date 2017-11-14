@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use EasyWeChat\Foundation\Application;
+use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    protected $app;
+    protected $request;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
-        $this->app = new Application(config('wechat.'));
+        $this->request = $request;
     }
 
+    /**
+     * 首页
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function index()
     {
-        dd($this->app->user);
+        return response('你好,'.session('user')['name']);
     }
 }
