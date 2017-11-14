@@ -6,7 +6,7 @@ use App\Services\LoginService;
 use EasyWeChat\Foundation\Application;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class LoginController extends Controller
 {
     protected $app, $request, $login;
 
@@ -18,16 +18,12 @@ class IndexController extends Controller
     }
 
     /**
-     * 调度方法
+     * 从微信获取用户信息
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function index()
+    public function oauth()
     {
-        if ($this->request->session()->has('user')) {
-            return response('你好,'.session('user')['name']);
-        }
-
         $response = $this->app->oauth
             ->scopes(['snsapi_userinfo'])
             ->redirect(route('login'));
@@ -36,7 +32,7 @@ class IndexController extends Controller
     }
 
     /**
-     * 登录/注册
+     * 本地登录/注册
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -46,6 +42,6 @@ class IndexController extends Controller
 
         $this->login->login($oauth);
 
-        return $this->index();
+        return redirect()->route('index');
     }
 }
