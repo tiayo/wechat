@@ -44,4 +44,16 @@ class LoginController extends Controller
 
         return redirect()->route('index');
     }
+
+    /**
+     * 退出登录
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout()
+    {
+        $this->request->session()->forget('user');
+
+        return redirect()->route('index');
+    }
 }

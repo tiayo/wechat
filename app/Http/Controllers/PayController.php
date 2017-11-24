@@ -36,7 +36,7 @@ class PayController extends Controller
         $payment = $app->payment;
 
         $result = $payment->prepare($order);
-
+dd($result);
         if ($result->return_code == 'SUCCESS' && $result->result_code == 'SUCCESS'){
             $prepayId = $result->prepay_id;
         }
