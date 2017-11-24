@@ -2,9 +2,9 @@
 
 return [
     'debug'  => true,
-    'app_id' => 'wx426b3015555a46be',
-    'secret' => '7813490da6f1265e4901ffb80afaa36f',
-    'token'  => 'erng0imag3kuzttx1ozabnvhbk0jwldf',
+    'app_id' => env('WX_APP_ID'),
+    'secret' => env('WX_SECRET'),
+    'token'  => env('WX_TOKEN'),
 
     'log' => [
         'level' => 'debug',
@@ -12,10 +12,10 @@ return [
     ],
 
     'payment' => [
-        'merchant_id'        => '1900009851',
-        'key'                => '8934e7d15453e97507ef794cf7b0519d',
-        'cert_path'          => app_path().'/Payment/Wxpay/cert/apiclient_cert.pem',
-        'key_path'           => app_path().'/Payment/Wxpay/cert/apiclient_key.pem',
+        'merchant_id'        => env('WX_MERCHANT_ID'),
+        'key'                => env('WX_KEY'),
+        'cert_path'          => app_path().env('WX_CERT_PATH'),
+        'key_path'           => app_path().env('WX_KEY_PATH'),
         'notify_url'         => '默认的订单回调地址',
     ],
 ];
