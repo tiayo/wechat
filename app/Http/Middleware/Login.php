@@ -10,7 +10,7 @@ class Login
     public function handle(Request $request, Closure $next, $guard = null)
     {
         if (!$request->session()->has('user')) {
-            return redirect()->route('login');
+            return redirect()->route('oauth');
         }
 
         return $next($request);
